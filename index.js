@@ -1,27 +1,22 @@
-const express = require('express');
-const PORT = 2003;
-const app = express();
-const server = require ('http').createServer(app);
-const io = require("socket.io")(server, { cors: {origini:'*'}});
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+const port = 2200;
 
-//Setup Server
-app.set('view engine', 'ejs');
+server.listen(port,()=>{
+    console.log(`server is listening on port ${port}`)
+})
 
-app.get('/home',(req,res) => {
-    res.render("home");
+app.get('/',(req,res) => {
+    res.sendFile(__dirname+ '/public/index.html')
 });
 
-server.listen(PORT, () => {
-     console.log(`listening to port  ${PORT}`);
- })
-
-// // Static files
-// app.use(express.static("public"));
-
-io.on('connection', (socket) => {
-    console.log('user Connected: '+ socket.id);
-
-    socket.on('message',(data)=> {
-        socket.broadcast.emit('message', data);
-    })
+io.on('connection', (socket) =>{
+    console.log('user Connected');
+    console.log(socket);
+    socket.on('message', (msg) => {
+        console.log(msg)
+        io.emit('message', msg)
+    });
+    
 })

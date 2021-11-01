@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js --unhandled-rejections=strict"
+    "start": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -18,15 +18,13 @@
   },
   "homepage": "https://github.com/deepak-quovantis/socketio#readme",
   "dependencies": {
-    "concurrently": "^6.2.0",
-    "config": "^3.3.6",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "http": "0.0.1-security",
-    "mongoose": "^5.13.3",
-    "socket.io": "^4.1.3"
+    "express": "^4.16.2",
+    "nodemon": "^1.12.1",
+    "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1"
   }
 }
