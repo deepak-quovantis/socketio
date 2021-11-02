@@ -14,28 +14,13 @@
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <ul id="messages"></ul>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <form action="">
-            <div class="input-group">
-              <input
-                type="text"
-                id="composeMessage"
-                class="form-control"
-                aria-label="Message..."
-                placeholder="Message..."
-                autocomplete="off"
-              />
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="submit">Send</button>
-              </span>
-            </div>
-          </form>
-        </div>
-      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="./javascript">Javascript Tips</a>
+        </li>
+        <li class="list-group-item"><a href="./angular">Angular talks</a></li>
+        <li class="list-group-item"><a href="./aws">AWS</a></li>
+      </ul>
     </div>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -48,27 +33,5 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io();
-
-      //Transfer message value to server
-      $('form').submit(() => {
-        socket.emit('message', $('#composeMessage').val());
-        $('#composeMessage').val('');
-        return false;
-      });
-
-      //Notify on screen, whenever new user connects
-      socket.on('connect', () => {
-        socket.emit('message', 'user Connected');
-      });
-
-      //Publish message to frontend
-      socket.on('message', (msg) => {
-        console.log(msg);
-        $('#messages').append($('<li>').text(msg));
-      });
-    </script>
   </body>
 </html>
